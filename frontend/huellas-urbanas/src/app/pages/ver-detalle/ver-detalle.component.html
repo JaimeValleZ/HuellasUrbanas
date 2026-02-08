@@ -1,0 +1,61 @@
+<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-6" *ngIf="campana">
+  <div class="max-w-4xl mx-auto">
+    <button (click)="volver()" class="text-sm font-medium text-primary mb-4 flex items-center gap-2">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Volver a Campañas
+    </button>
+
+    <div class="bg-white dark:bg-black/20 rounded-xl overflow-hidden shadow-lg dark:shadow-primary/10">
+      <div
+        class="w-full h-64 sm:h-80 md:h-96 bg-cover bg-center"
+        [style.backgroundImage]="'url(' + getImagenUrl() + ')'"
+      ></div>
+
+      <div class="p-6 sm:p-8 md:p-10">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{{ campana.nombre }}</h2>
+        <p class="text-black/60 dark:text-white/60 mb-8 text-lg">{{ campana.descripcion }}</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+          <div>
+            <h3 class="text-sm font-bold uppercase text-black/50 dark:text-white/50 mb-3 tracking-wider">Fechas</h3>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary text-2xl">calendar_month</span>
+              <div>
+                <p class="font-bold">{{ campana.fechaInicio | date: 'longDate' }}</p>
+                <p class="text-sm text-black/60 dark:text-white/60">
+                  {{ campana.fechaInicio | date: 'EEEE, d MMM y  HH:mm' }} - {{ campana.fechaFin | date: 'EEEE, d MMM y  HH:mm' }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-bold uppercase text-black/50 dark:text-white/50 mb-3 tracking-wider">Ubicación</h3>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+              <div>
+                <p class="font-bold">{{ campana.localidad }}</p>
+                <p class="text-sm text-black/60 dark:text-white/60">{{ campana.ubicacion }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            class="w-full sm:w-auto flex-1 justify-center whitespace-nowrap bg-primary text-black font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity text-base flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined">event_available</span>
+            Registrarme a la campaña
+          </button>
+          <button
+            class="w-full sm:w-auto flex-1 justify-center whitespace-nowrap bg-primary/20 dark:bg-primary/30 text-black dark:text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors text-base flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined">share</span>
+            Compartir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

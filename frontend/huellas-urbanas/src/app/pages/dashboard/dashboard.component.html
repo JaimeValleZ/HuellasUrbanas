@@ -1,0 +1,74 @@
+<main class="flex-grow">
+  <section class="w-full py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Hero -->
+      <div
+        class="flex min-h-[520px] flex-col justify-end gap-6 bg-cover bg-center rounded-xl px-8 pb-10"
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0,0,0,0.5)), url('assets/portada.png');"
+      >
+        <div class="max-w-2xl text-white">
+          <h1 class="text-5xl font-black leading-tight">
+            Ayuda a cambiar la vida de un amigo de cuatro patas
+          </h1>
+          <p class="mt-3 text-lg">
+            Conectamos a voluntarios, rescatistas y adoptantes con perros que necesitan ayuda en tu ciudad.
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button
+            (click)="irACampanas()"
+            class="rounded-lg h-12 px-6 bg-primary text-white text-base font-bold hover:bg-orange-600 transition-colors"
+          >
+            Explorar Campañas
+          </button>
+          <button
+            (click)="irAReportes()"
+            class="rounded-lg h-12 px-6 bg-gray-100 text-text-primary font-bold hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+          >
+            Ver Mapa de Reportes
+          </button>
+        </div>
+      </div>
+
+      <!-- Sección intermedia -->
+      <div class="bg-section-light dark:bg-section-dark py-12 md:py-20 mt-10 rounded-xl text-center">
+        <h2 class="text-3xl font-bold mb-8">Participa y haz la diferencia</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-sm">
+            <div class="text-primary mb-4"><span class="material-symbols-outlined text-5xl">volunteer_activism</span></div>
+            <p class="text-lg font-bold">Únete a una Campaña de Rescate</p>
+            <p class="text-sm text-text-secondary mt-2">Descubre oportunidades de voluntariado y donación.</p>
+            <a routerLink="/campanas/ver" class="mt-3 text-primary font-bold text-sm hover:underline inline-block">Ver campañas</a>
+          </div>
+
+          <div class="p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-sm">
+            <div class="text-primary mb-4"><span class="material-symbols-outlined text-5xl">pets</span></div>
+            <p class="text-lg font-bold">Encuentra un Hogar</p>
+            <p class="text-sm text-text-secondary mt-2">Explora los perfiles de hogares de adopción.</p>
+            <a routerLink="/hogares/ver" class="mt-3 text-primary font-bold text-sm hover:underline inline-block">Buscar hogares</a>
+          </div>
+
+          <div class="p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-sm">
+            <div class="text-primary mb-4"><span class="material-symbols-outlined text-5xl">location_on</span></div>
+            <p class="text-lg font-bold">Mira los Perros que Necesitan Ayuda</p>
+            <p class="text-sm text-text-secondary mt-2">Accede al mapa interactivo de reportes ciudadanos.</p>
+            <a routerLink="/reportar-perro/ver" class="mt-3 text-primary font-bold text-sm hover:underline inline-block">Ir al mapa</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa -->
+      <section class="mt-12 md:mt-20 text-center">
+        <h2 class="text-3xl font-bold mb-8">Mapa de Reportes en Tiempo Real</h2>
+        <div class="w-full h-[480px] bg-gray-200 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg">
+          <img
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIivqHaaXrG8JbVit4ub8G9b9y_dIibKBo5JdBDtSQ4QJNpFG8yATtioGDQ2aXRJzdTnpYWUYzgMBprLAF4bL6RePhzgjvIuWt0kYDSE_xlSTPOlc8xapDLAFPFNfAjkdYhbPaWqwMRPmUdJwJY2ApOX2dIIpcLnfckKPvUE-MrK3AMzpW64E8U43CxHSq8nDEf3nUw9y5emrnR2JaXxEsFD5pRmfH9RHjTriY51kH_MYsApmR-lPPPZx2iC69KB_6A-dEh3DNE7A"
+            alt="Mapa de reportes"
+          />
+        </div>
+      </section>
+    </div>
+  </section>
+</main>

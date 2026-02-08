@@ -1,0 +1,95 @@
+<div class="min-h-screen bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+    <div class="container mx-auto px-4 py-12 max-w-3xl">
+        <div
+            class="bg-white dark:bg-gray-800/20 rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+            <div class="p-6 sm:p-8">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold tracking-tight">Registra una Nueva Campaña</h1>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1">Completa los siguientes campos para organizar una
+                        nueva iniciativa.</p>
+                </div>
+
+                <form [formGroup]="campanaForm" (ngSubmit)="onSubmit()"
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium pb-2">Nombre de la campaña</label>
+                        <input formControlName="nombre" type="text"
+                            class="form-input block w-full rounded-lg border border-border-light bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary h-12 px-4 placeholder:text-gray-400"
+                            placeholder="Ej: Jornada de vacunación en Suba">
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium pb-2">Descripción</label>
+                        <textarea formControlName="descripcion"
+                            class="form-textarea block w-full rounded-lg border border-border-light bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary min-h-32 p-4 placeholder:text-gray-400"
+                            placeholder="Detalla los objetivos, actividades y lo que se necesita..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium pb-2">Fecha y hora de Inicio</label>
+                        <input formControlName="fechaInicio" type="datetime-local"
+                            class="form-input block w-full rounded-lg border border-border-light bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary h-12 px-4">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium pb-2">Fecha y hora de Fin</label>
+                        <input formControlName="fechaFin" type="datetime-local"
+                            class="form-input block w-full rounded-lg border border-border-light bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary h-12 px-4">
+                    </div>
+
+
+                    <div>
+                        <label class="block text-sm font-medium pb-2">Localidad</label>
+                        <select formControlName="localidad"
+                            class="form-select block w-full rounded-lg border border-border-light bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary h-12 px-4">
+                            <option value="">Selecciona una localidad</option>
+                            <option>Engativa</option>
+                            <option>Chapinero</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium pb-2">Ubicación</label>
+                        <input formControlName="ubicacion" type="text"
+                            class="form-input block w-full rounded-lg border border-border-light bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary h-12 px-4 placeholder:text-gray-400"
+                            placeholder="Ej: Parque de los Novios, entrada principal">
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium pb-2">Imagen de la campaña</label>
+                        <div
+                            class="flex justify-center rounded-lg border-2 border-dashed border-border-light dark:border-border-dark px-6 pt-5 pb-6">
+                            <div class="text-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-gray-400 mx-auto">cloud_upload</span>
+                                <div class="flex text-sm text-gray-600 dark:text-gray-300 justify-center">
+                                    <label
+                                        class="relative cursor-pointer rounded-md font-medium text-primary hover:text-primary/80">
+                                        <span>Sube un archivo</span>
+                                        <input type="file" class="sr-only" (change)="onFileSelected($event)">
+                                    </label>
+                                    <p class="pl-1">o arrástralo y suéltalo</p>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF hasta 10MB</p>
+                                <img *ngIf="previewUrl" [src]="previewUrl" alt="Vista previa"
+                                    class="mt-4 mx-auto max-h-48 rounded-lg shadow-md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 flex justify-end gap-4 mt-6">
+                        <button type="button" routerLink="/campanas"
+                            class="px-4 h-10 rounded-lg text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                            class="px-5 h-10 rounded-lg bg-primary text-white font-bold shadow hover:bg-primary/90"
+                            [disabled]="campanaForm.invalid">
+                            Crear Campaña
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

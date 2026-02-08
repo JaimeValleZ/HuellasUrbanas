@@ -1,0 +1,125 @@
+<div class="flex flex-1 justify-center py-12">
+  <div class="w-full max-w-4xl px-4">
+    <h1 class="text-4xl font-bold">Casas Adoptantes Registradas</h1>
+    <p class="mt-2 text-black/60 dark:text-white/60">
+      Aquí puedes ver la lista de todas las solicitudes de casas adoptantes y su estado actual.
+    </p>
+
+    <button routerLink="/hogares/crear"
+      style="margin-top: 20px;"
+      class="rounded-md bg-primary/20 px-3 py-1.5 text-sm font-medium text-black transition-colors hover:bg-primary/30 dark:text-white">
+      Registrar Hogar
+    </button>
+
+    <!-- Tabla dinámica -->
+    <div class="mt-8 overflow-hidden rounded-lg border border-black/10 dark:border-white/10"
+      *ngIf="hogares && hogares.length > 0; else sinDatos">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-nowrap">
+          <thead
+            class="border-b border-black/10 bg-black/5 text-left text-sm font-semibold dark:border-white/10 dark:bg-white/5">
+            <tr>
+              <th class="p-4">Propietario</th>
+              <th class="p-4">Nombre del Hogar</th>
+              <th class="p-4">Localidad</th>
+              <th class="p-4">Estado</th>
+              <th class="p-4 text-right">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-black/10 dark:divide-white/10">
+            <tr *ngFor="let hogar of hogares" class="hover:bg-black/5 dark:hover:bg-white/5">
+              <!-- Propietario -->
+              <td class="p-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-10 w-10 flex-shrink-0 rounded-full bg-cover bg-center border border-black/10 dark:border-white/10"
+                    [ngStyle]="{
+                      'background-image': 'url(' + imagenCompleta(hogar.imagenUrl1) + ')'
+                    }"></div>
+                  <div>
+                    <p class="font-medium">{{ hogar.nombrePropietario }}</p>
+                    <p class="text-sm text-black/60 dark:text-white/60">
+                      {{ hogar.telefono }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Nombre hogar -->
+              <td class="p-4">{{ hogar.nombreHogar }}</td>
+
+              <!-- Localidad -->
+              <td class="p-4">{{ hogar.localidad }}</td>
+
+              <!-- Estado -->
+              <td class="p-4">
+                <ng-container [ngSwitch]="hogar.estado">
+                  <span *ngSwitchCase="'RECHAZADA'"
+                    class="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900 dark:text-red-300">
+                    <span class="mr-1.5 h-2 w-2 rounded-full bg-red-500"></span>
+                    Rechazada
+                  </span>
+
+                  <span *ngSwitchCase="'APROBADA'"
+                    class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
+                    <span class="mr-1.5 h-2 w-2 rounded-full bg-green-500"></span>
+                    Aprobada
+                  </span>
+
+                  <span *ngSwitchCase="'EN_REVISION'"
+                    class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
+                    <span class="mr-1.5 h-2 w-2 rounded-full bg-yellow-500"></span>
+                    En Revisión
+                  </span>
+
+                  <span *ngSwitchDefault
+                    class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                    <span class="mr-1.5 h-2 w-2 rounded-full bg-gray-500"></span>
+                    Desconocido
+                  </span>
+                </ng-container>
+              </td>
+
+              <!-- Acciones -->
+              <td class="p-4 text-right">
+                <button routerLink="/hogares/{{ hogar.id }}"
+                  class="rounded-md bg-primary/20 px-3 py-1.5 text-sm font-medium text-black transition-colors hover:bg-primary/30 dark:text-white">
+                  Ver Perfil
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sin datos -->
+    <ng-template #sinDatos>
+      <p class="mt-6 text-center text-black/60 dark:text-white/60">
+        No hay hogares registrados aún.
+      </p>
+    </ng-template>
+
+    <!-- Controles de paginación -->
+    <div class="mt-6 flex items-center justify-between" *ngIf="totalPages > 1">
+      <p class="text-sm text-black/60 dark:text-white/60">
+        Página {{ currentPage + 1 }} de {{ totalPages }}
+      </p>
+
+      <div class="flex items-center gap-2">
+        <button
+          class="rounded-md border border-black/10 p-2 text-sm font-medium hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5"
+          [disabled]="currentPage === 0" (click)="cargarHogares(currentPage - 1)">
+          Anterior
+        </button>
+
+        <button
+          class="rounded-md border border-black/10 p-2 text-sm font-medium hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5"
+          [disabled]="currentPage + 1 >= totalPages" (click)="cargarHogares(currentPage + 1)">
+          Siguiente
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

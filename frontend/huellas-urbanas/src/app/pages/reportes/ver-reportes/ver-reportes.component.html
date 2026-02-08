@@ -1,0 +1,51 @@
+<div class="container mx-auto px-4 py-8 font-display">
+  <div class="flex flex-wrap items-center justify-between mb-6">
+    <h2 class="text-3xl font-bold">Mapa de Reportes</h2>
+    <div class="flex gap-2">
+      <button (click)="actualizarMapa()" class="flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary font-medium px-4 py-2 rounded-lg">
+        <span class="material-symbols-outlined">refresh</span>
+        Actualizar mapa
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Mapa -->
+    <div class="lg:col-span-2">
+      <div id="mapa-reportes" class="w-full h-[600px] rounded-xl shadow border"></div>
+      <div class="flex justify-end mt-2">
+        <button (click)="centrarEnMiUbicacion()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+          <span class="material-symbols-outlined">my_location</span>
+          Mi ubicación
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de reportes -->
+    <div class="flex flex-col gap-4">
+      <h3 class="text-xl font-bold">Reportes Recientes</h3>
+
+      <div *ngIf="cargando" class="text-gray-500 text-center py-4">Cargando reportes...</div>
+
+      <div *ngFor="let r of reportes" class="rounded-lg border bg-background-light dark:bg-gray-800/30 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-500">{{ r.fechaReporte | date: 'yyyy-MM-dd HH:mm' }}</p>
+            <p class="font-medium">{{ r.descripcion }}</p>
+          </div>
+          <span
+            class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+            [ngClass]="{
+              'bg-red-100 text-red-800': r.estado === 'HERIDO',
+              'bg-green-100 text-green-800': r.estado === 'SIN_RESCATAR'
+            }">
+            {{ r.estado }}
+          </span>
+        </div>
+        <div class="mt-3 flex items-center justify-between">
+          <a [routerLink]="['/reportar-perro/ver', r.id]" class="text-sm font-medium text-primary hover:underline" href="#">Ver detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

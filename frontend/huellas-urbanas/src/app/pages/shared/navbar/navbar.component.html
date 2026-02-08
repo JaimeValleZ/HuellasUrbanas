@@ -1,0 +1,31 @@
+<header
+  class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-4">
+      <!-- LOGO + TÍTULO -->
+      <div class="flex items-center gap-4 text-text-primary dark:text-white">
+        <div class="text-primary">
+          <span class="material-symbols-outlined text-4xl">pets</span>
+        </div>
+        <h2 class="text-xl font-bold">Huellas Urbanas</h2>
+      </div>
+
+      <!-- MENÚ PRINCIPAL -->
+      <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+        <a routerLink="/" class="text-sm font-medium hover:text-primary transition-colors">Inicio</a>
+        <a routerLink="/campanas/ver" class="text-sm font-medium hover:text-primary transition-colors">Campañas</a>
+        <a routerLink="/hogares/ver" class="text-sm font-medium hover:text-primary transition-colors">Hogares</a>
+        <a routerLink="/reportar-perro/ver" class="text-sm font-medium hover:text-primary transition-colors">Reportes</a>
+      </nav>
+
+      <!-- BOTÓN REPORTAR -->
+      <div class="flex items-center">
+        <button
+          (click)="irAReportarPerro()"
+          class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-orange-600 transition-colors">
+          Reportar perro
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
