@@ -1,0 +1,2 @@
+ALTER TABLE hogares ADD COLUMN localidad VARCHAR(50);
+ALTER TABLE hogares ADD COLUMN estado VARCHAR(50);
